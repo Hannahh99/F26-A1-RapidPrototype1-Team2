@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
 
     //Variable for the SpriteRenderer
     private SpriteRenderer sr;
+
+    //create spawn location for player on death
+    public Transform spawn;
 
     // Start is called before the first frame update
     void Start()
@@ -140,5 +144,25 @@ public class PlayerMovement : MonoBehaviour
 
         //Return the value of check
         return check;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            spawnPoint();
+        }
+    }
+    private void spawnPoint()
+    {
+
+        if (rb2d != null)
+        {
+            rb2d.velocity = Vector3.zero;
+        }
+
+        // Move the player to the spawn point's position and rotation
+        transform.position = spawn.position;
+        transform.rotation = spawn.rotation;
     }
 }
