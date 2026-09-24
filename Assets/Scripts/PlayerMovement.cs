@@ -1,7 +1,9 @@
+using TMPro;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     //public means any other script can acccess it, and it's
     //visible in the editor!
     public float moveSpeed;
+
+    public TextMeshProUGUI lifeText; // assign text to this in unity
+    private int lifePoints = 3;
 
     //Jump stuff
     public float jumpHeight;
@@ -48,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
 
         //Reset the coyote timer
         coyoteTime = coyoteTimeMax;
+
+        //start counter text at 0
+        updateLife();
     }
 
     // Update is called once per frame
@@ -152,6 +160,15 @@ public class PlayerMovement : MonoBehaviour
         {
             spawnPoint();
         }
+
+        if (collision.gameObject.CompareTag("Border"))
+        {
+            spawnPoint();
+        }
+
+        lifePoints--;
+        updateLife();
+        gameOver();
     }
     private void spawnPoint()
     {
@@ -164,5 +181,18 @@ public class PlayerMovement : MonoBehaviour
         // Move the player to the spawn point's position and rotation
         transform.position = spawn.position;
         transform.rotation = spawn.rotation;
+    }
+
+    void updateLife()
+    {
+        lifeText.text = "Current Lives: " + lifePoints;
+    }
+
+    void gameOver()
+    {
+        if(lifePoints == 0)
+        {
+            SceneManager.LoadScene("Gameover");
+        }
     }
 }

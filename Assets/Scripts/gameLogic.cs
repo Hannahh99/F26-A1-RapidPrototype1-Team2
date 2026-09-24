@@ -14,6 +14,7 @@ public class gameLogic : MonoBehaviour
     {
         // store current pos for blockPrefab
         Vector3 currentPosition = transform.position;
+        Vector3 blockAdjust = new Vector3(-.2f, .1f, 0);
 
         if (collision.gameObject.CompareTag("Player"))
         {
