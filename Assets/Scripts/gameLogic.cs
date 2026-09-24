@@ -22,6 +22,7 @@ public class gameLogic : MonoBehaviour
 
                 //Spawn blockPrefab
                 Instantiate(blockPrefab, currentPosition, Quaternion.identity);
+                Instantiate(blockPrefab, currentPosition + blockAdjust , Quaternion.identity);
                 //Destroy spike
                 Destroy(gameObject);
         }
