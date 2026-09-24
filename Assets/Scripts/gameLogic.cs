@@ -21,7 +21,6 @@ public class gameLogic : MonoBehaviour
                 //if the player collides with the spike, instantiate a block, destroy the spike, run updateLife
 
                 //Spawn blockPrefab
-                Instantiate(blockPrefab, currentPosition, Quaternion.identity);
                 Instantiate(blockPrefab, currentPosition + blockAdjust , Quaternion.identity);
                 //Destroy spike
                 Destroy(gameObject);
