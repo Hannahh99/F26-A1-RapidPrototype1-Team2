@@ -166,6 +166,11 @@ public class PlayerMovement : MonoBehaviour
             spawnPoint();
         }
 
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            lifePoints = 3;
+        }
+
         lifePoints--;
         updateLife();
         gameOver();
