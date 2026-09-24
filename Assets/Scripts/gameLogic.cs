@@ -5,32 +5,24 @@ using UnityEngine;
 public class gameLogic : MonoBehaviour
 {
 
+   //make game object variable to tie block to in unity
     public GameObject blockPrefab;
-    //update lives
-    //put player at spawn
-
-    // Start is called before the first frame update
-    void Start()
+    //update lives if time
+    
+    //when player collides with spikes
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
+        // store current pos for blockPrefab
+        Vector3 currentPosition = transform.position;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    //Spawn blockPrefab
-    //Destroy spike
-    void OnTriggerEnter2D(Collider2D collision)
-    {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //if the player collides with the spike, instantiate a block, destroy the spike, run updateLife
-            //From the RandomObjectSpawnerScript using spawner.(nameOfFunction)
-            Instantiate(blockPrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+                //if the player collides with the spike, instantiate a block, destroy the spike, run updateLife
+
+                //Spawn blockPrefab
+                Instantiate(blockPrefab, currentPosition, Quaternion.identity);
+                //Destroy spike
+                Destroy(gameObject);
         }
     }
 }
